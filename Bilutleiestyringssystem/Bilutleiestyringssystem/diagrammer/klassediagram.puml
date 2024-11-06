@@ -1,0 +1,72 @@
+@startuml Klassediagram - Oblig2
+'https://plantuml.com/class-diagram
+
+!theme cerulean
+
+class "Utleiekontor"    as uk {
+	kontornummer
+	adresse
+	telefonnummer
+}
+class "Bil"             as b  {
+	registreringsnummer
+	merke
+	modell
+	farge
+	utleiegruppe
+	ledigStatus
+}
+class "Kunde"           as k  {
+	fornavn
+	etternavn
+	adresse
+	telefonnummer
+}
+class "Reservasjon"     as r  {
+	sted
+	dato
+	klokkeslett
+	antallDager
+	pris
+}
+class "Regning"         as rg {
+	regning_nr
+	faktura
+	dato
+	utleiekontor
+
+}
+class "Utleie"          as u  {
+	henteSted
+    kilometerstandVedHent
+    datoHent
+    klokkeslettHent
+    datoForventetLevert
+    klokkeslettForventetLevert
+    datoLevert
+    klokkeslettLevert
+    kilometerstandVedRetur
+    levertSted
+    kredittkort
+}
+class "Selskap"         as s {
+	navn
+	telefonnummer
+	firmaadresse
+}
+
+s  "1..*" -down->  "1..1" uk
+s  "1..*" -down->  "1..1" k
+uk "1..*" -down->  "1..1" r
+uk "1..*" -right-  "1..1" rg
+rg "1..1" -right-  " *..1" k
+uk "1..*" -down->  "1..1" u
+u  "1..1" -up-     "1..1" rg
+uk "1..*" -down->  "1..1" b
+k  "1..*" -down->  "1..1" u
+k  "1..*" -down->  "1..1" r
+u  "1..1" -down->  "1..*" b
+r  "1..1" -down->  "1..*" b
+r  "1..1" -right-> "1..1" u : "                            "
+
+@enduml

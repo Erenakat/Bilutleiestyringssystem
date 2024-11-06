@@ -1,0 +1,39 @@
+@startuml Brukstilfellediagram - Oblig2
+'https://plantuml.com/use-case-diagram
+
+!theme cerulean
+
+left to right direction
+
+actor Kunde as k
+skinparam actorStyle awesome
+actor Ansatt as a
+
+package Datasystem {
+	usecase "Finne Bil" as fb
+	usecase "Reservere Bil" as rb
+	usecase "Opprette Utleiested" as ou
+	usecase "Legge til Biler" as ltb2
+	usecase "Redigere / fjerne Bil" as rfb
+}
+
+package Utleiested {
+	usecase "Leie Bil" as lb
+	usecase "Levere tilbake Bil" as ltb
+	usecase "Betale Regning" as br
+}
+
+k ---> fb
+k ---> rb
+k ---> lb
+k ---> ltb
+k ---> br
+
+a ---> ou
+a ---> ltb2
+a ---> rfb
+a ---> fb
+a ---> rb
+a ---> lb
+
+@enduml
